@@ -63,7 +63,7 @@ export const CartItem = ({ product, onRemove }) => {
 
           <button
             type="button"
-            onClick={() => onRemove(product.id)}
+            onClick={() => onRemove(product.slug)}
             className="font-bold text-gray-500 hover:text-rose-500 transition-colors bg-white/5 px-3 py-1 rounded-lg border border-white/5 hover:border-rose-500/20"
           >
             Eliminar

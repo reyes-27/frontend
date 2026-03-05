@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCard from './ProductCard';
 import endpoints from '../../endpoints';
 import SimplePaginator from '../pagination/SimplePaginator';
+
 const ProductList = ({ size, sendCountToParent, pageNumber }) => {
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(1);
@@ -31,21 +32,12 @@ const ProductList = ({ size, sendCountToParent, pageNumber }) => {
 
     if (products && products.length > 0) {
         return (
-<div className='flex flex-col gap-10'> {/* Added flex container */}
-                {/* The Grid */}
+            <div className='flex flex-col gap-10'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {products.map((product, index) => (
                         <ProductCard key={index} product={product}/>
                     ))}
                 </div>
-
-                {/* Place Paginator HERE */}
-                {/* <div className="flex justify-center border-t border-white/5 pt-8">
-                    <SimplePaginator 
-                        count={size} // Use the total page count from API
-                        sendPageNumToParent={handlePageChange} 
-                    />
-                </div> */}
             </div>
         );
     }

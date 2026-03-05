@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
   useCSRF()
   }, [])
-  console.log(cookies.get('csrftoken'))
+
   return <RouterProvider router={router} />
 }
 

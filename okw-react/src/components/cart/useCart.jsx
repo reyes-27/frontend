@@ -26,7 +26,7 @@ const useCart = () => {
     })
 
     const removeItem = useMutation({
-        mutationFn: (id) => axios.delete(`${endpoints.orders['cart-items']}${id}/`),
+        mutationFn: (slug) => axios.delete(`${endpoints.orders['cart-items']}${slug}/`, {headers:{'X-CSRF-TOKEN':csrftoken}}),
         onSuccess: ()=> queryClient.invalidateQueries(['cart'])
     })
     

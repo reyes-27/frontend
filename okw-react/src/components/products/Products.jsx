@@ -9,7 +9,6 @@ const Products = () => {
     const [myCount, setMyCount] = useState(0);
 
     const sendPageNumToParent = (end) => {
-        // This updates the URL to ?page=X
         setSearchParams({ page: end }); 
     };
 
@@ -19,7 +18,6 @@ const Products = () => {
     
     return (
         <div className="products-container px-4 md:px-10 pb-20">
-            {/* Pass pageNumber (from URL) as the source of truth */}
             <ProductList 
                 sendCountToParent={sendCountToParent} 
                 pageNumber={pageNumber} 

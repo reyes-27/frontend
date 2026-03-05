@@ -10,7 +10,7 @@ const SimplePaginator = ({ count, sendPageNumToParent, currentPage }) => {
     pagList.push(
       <button
         key={i}
-        onClick={() => pagButton(i)} // FIXED: Added arrow function to prevent loop
+        onClick={() => pagButton(i)}
         className={`px-4 py-2 rounded-lg font-bold transition-all duration-200 ${
           currentPage === i
             ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]"
