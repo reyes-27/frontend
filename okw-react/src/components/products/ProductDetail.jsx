@@ -3,25 +3,34 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeftIcon, StarIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 import AddToCart from '../cart/AddToCart';
 import ERRORPNG from '../../assets/error/error.png';
+import useProduct from './useProduct';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
 const ProductDetail = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState('')
   const slug = useParams('slug')
-
-  // Stock logic
+  const {product} = useProduct(slug)
   const isLowStock = product.stock < 10 && product.stock > 0;
   const isOutOfStock = product.stock <= 0;
-
-  // Image extraction
+  const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+        refetchOnWindowFocus: false, // Optional: stops auto-fetching when you switch tabs
+        },
+    },
+    });
   const primaryImage = product.image_set?.find(img => img.level === 0)?.image 
     || product.image_set?.[0]?.image 
     || ERRORPNG;
 
+  if (isLoading) return <div className="text-white p-20 text-center">Loading Performance...</div>;
     
+  if (isError) return <div className="text-red-500 p-20 text-center">Hardware Error: Product not found.</div>;
 
   return (
+    <QueryClientProvider client={queryClient}>
+    
     <div className="min-h-screen bg-[#0b0f1a] text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Navigation */}
@@ -145,6 +154,8 @@ const ProductDetail = () => {
         </div>
       </div>
     </div>
+    </QueryClientProvider>
+
   );
 };
 
