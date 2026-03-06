@@ -1,7 +1,7 @@
 import ERRORPNG from '../../assets/error/error.png';
 import { useState } from 'react';
 import AddToCart from '../cart/AddToCart';
-
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
@@ -29,9 +29,9 @@ const ProductCard = ({ product }) => {
       {/* Product Details */}
       <div className="p-5 flex flex-col flex-grow">
         <div className="mb-4">
-          <button className="text-left font-bold text-gray-100 text-lg line-clamp-2 hover:text-blue-400 transition-colors cursor-pointer leading-snug">
+          <Link to={`/products/${product.slug}`} className="text-left font-bold text-gray-100 text-lg line-clamp-2 hover:text-blue-400 transition-colors cursor-pointer leading-snug">
             {product.name}
-          </button>
+          </Link>
           
           <div className="mt-2 flex items-center justify-between">
             <div className="flex items-baseline gap-1">

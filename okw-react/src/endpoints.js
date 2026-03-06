@@ -14,7 +14,7 @@ const endpoints = {
     },
     'ecommerce':{
         'product-list': domain + 'api/ecommerce/products/',
-        'product-detail': domain + 'api/ecommerce/products/',
+        'product-detail': (slug) => domain + `api/ecommerce/products/${slug}`,
     },
     'orders':{
         'cart-detail': domain + 'api/orders/cart/',
