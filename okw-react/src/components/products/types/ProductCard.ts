@@ -1,4 +1,4 @@
-import { ProductImage } from "./ProductImage";
+import { ProductImage } from "../../../features/types/ProductImage";
 export interface ProductCard{
         url:string;
         image_set: ProductImage;
