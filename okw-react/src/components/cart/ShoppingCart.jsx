@@ -7,14 +7,14 @@ import useCart from './useCart';
 
 
 export default function ShoppingCart({ open, setOpen }) {
-  const { cart, isLoading, removeItem, process_checkout } = useCart();
+  const { cart, isLoading, removeItem,  } = useCart();
   const navigate = useNavigate()
   const handleRemove = (id) => {
     removeItem.mutate(id);
   };
 
   const handleCheckout = () => {
-    process_checkout.mutate();
+    // process_checkout.mutate();
     // navigate('/checkout'); 
   };
 
