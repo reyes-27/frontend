@@ -2,14 +2,20 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { CartItem } from './CartItem';
 import { CartSummary } from './CartSummary';
+import { useNavigate } from 'react-router-dom';
 import useCart from './useCart';
 
 
 export default function ShoppingCart({ open, setOpen }) {
-  const { cart, isLoading, removeItem } = useCart();
-  
+  const { cart, isLoading, removeItem, process_checkout } = useCart();
+  const navigate = useNavigate()
   const handleRemove = (id) => {
     removeItem.mutate(id);
+  };
+
+  const handleCheckout = () => {
+    process_checkout.mutate();
+    // navigate('/checkout'); 
   };
 
   return (
@@ -71,7 +77,7 @@ export default function ShoppingCart({ open, setOpen }) {
                   <CartSummary 
                     subtotal={cart?.total_price || 0} 
                     onContinue={() => setOpen(false)} 
-                    onCheckout={() => console.log("Going to checkout")}
+                    onCheckout={handleCheckout}
                   />
                 )}
               </div>

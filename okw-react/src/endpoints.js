@@ -19,6 +19,8 @@ const endpoints = {
     'orders':{
         'cart-detail': domain + 'api/orders/cart/',
         'cart-items': domain + 'api/orders/cart/items/',
+        'cart/checkout': domain + 'api/orders/cart/checkout/',
+        'order-detail': (id) => domain + `api/orders/${id}`,
     },
 }
 

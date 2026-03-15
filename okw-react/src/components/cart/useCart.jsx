@@ -29,8 +29,12 @@ const useCart = () => {
         mutationFn: (slug) => axios.delete(`${endpoints.orders['cart-items']}${slug}/`, {headers:{'X-CSRF-TOKEN':csrftoken}}),
         onSuccess: ()=> queryClient.invalidateQueries(['cart'])
     })
+    const process_checkout = useMutation({
+        mutationFn : (payload) => axios.post(endpoints.ecommerce['cart/checkout'], payload).then((res) => res.data),
+        onSuccess: () => queryClient.invalidateQueries(['cart'])
+    })
     
-    return {cart, isLoading, addItem, removeItem, decrementItem}
+    return {cart, isLoading, addItem, removeItem, decrementItem, process_checkout}
 }
 
 export default useCart
